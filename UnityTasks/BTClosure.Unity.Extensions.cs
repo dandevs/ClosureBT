@@ -80,10 +80,10 @@ namespace ClosureBT {
             => WaitUntilFrameEvent<T>(channel, null, out var _, lifecycle);
 
         public static BTLeaf WaitUntilFrameEvent(string channel, UnityEngine.Object objectChannel, Action lifecycle = null)
-            => WaitUntilFrameEvent<bool>(channel, objectChannel, out var _, lifecycle);
+            => WaitUntilFrameEvent<FrameEvent.DefaultType>(channel, objectChannel, out var _, lifecycle);
 
         public static BTLeaf WaitUntilFrameEvent(UnityEngine.Object objectChannel, Action lifecycle = null)
-            => WaitUntilFrameEvent<bool>(null, objectChannel, out var _, lifecycle);
+            => WaitUntilFrameEvent<FrameEvent.DefaultType>(null, objectChannel, out var _, lifecycle);
 
         //----------------------------------------------------------------------------------------------------------------------
 

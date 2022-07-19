@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static partial class FrameEvent {
     private static FrameEvent.Manager instance;
+    public struct DefaultType {}
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void InitFrameEvent() {
@@ -22,9 +23,9 @@ public static partial class FrameEvent {
     public static void Trigger<T>(UnityEngine.Object objectChannel, T e) => Trigger<T>(null, objectChannel, e);
     public static void Trigger<T>(string channel, T e) => Trigger<T>(channel, null, e);
     
-    public static void TriggerDefault(string channel, UnityEngine.Object objectChannel = null) => Trigger<bool>(channel, objectChannel, true);
-    public static void TriggerDefault(UnityEngine.Object objectChannel) => Trigger<bool>(null, objectChannel, true);
-    public static void TriggerDefault(string channel) => Trigger<bool>(channel, null, true);
+    public static void TriggerDefault(string channel, UnityEngine.Object objectChannel = null) => Trigger<DefaultType>(channel, objectChannel, default);
+    public static void TriggerDefault(UnityEngine.Object objectChannel) => Trigger<DefaultType>(null, objectChannel, default);
+    public static void TriggerDefault(string channel) => Trigger<DefaultType>(channel, null, default);
 
     //------------------------------------------------------------------------------------------------------------------
 
@@ -55,8 +56,8 @@ public static partial class FrameEvent {
     public static bool When<T>(UnityEngine.Object objectChannel) => When<T>(null, objectChannel, out var _);
     public static bool When<T>(string channel, UnityEngine.Object objectChannel) => When<T>(channel, objectChannel, out var _);
 
-    public static bool When(string channel, UnityEngine.Object objectChannel = null) => When<bool>(channel, objectChannel, out var _);
-    public static bool When(UnityEngine.Object objectChannel) => When<bool>(null, objectChannel, out var _);
+    public static bool When(string channel, UnityEngine.Object objectChannel = null) => When<DefaultType>(channel, objectChannel, out var _);
+    public static bool When(UnityEngine.Object objectChannel) => When<DefaultType>(null, objectChannel, out var _);
 
     //------------------------------------------------------------------------------------------------------------------
 
@@ -74,12 +75,12 @@ public static partial class FrameEvent {
 
     public static void TriggerEvent<T>(this UnityEngine.Object objectChannel, string channel, T e) => Trigger<T>(channel, objectChannel, e);
     public static void TriggerEvent<T>(this UnityEngine.Object objectChannel, T e) => Trigger<T>(null, objectChannel, e);
-    public static void TriggerEvent(this UnityEngine.Object objectChannel, string channel = null) => Trigger<bool>(channel, objectChannel, true);
+    public static void TriggerEvent(this UnityEngine.Object objectChannel, string channel = null) => Trigger<DefaultType>(channel, objectChannel, default);
 
     public static bool OnEvent<T>(this UnityEngine.Object objectChannel, string channel, out T e) => When<T>(channel, objectChannel, out e);
     public static bool OnEvent<T>(this UnityEngine.Object objectChannel, out T e) => When<T>(null, objectChannel, out e);
     public static bool OnEvent<T>(this UnityEngine.Object objectChannel) => When<T>(null, objectChannel, out var _);
-    public static void OnEvent(this UnityEngine.Object objectChannel, string channel = null) => When<bool>(channel, objectChannel, out var _);
+    public static void OnEvent(this UnityEngine.Object objectChannel, string channel = null) => When<DefaultType>(channel, objectChannel, out var _);
 
     //------------------------------------------------------------------------------------------------------------------
 

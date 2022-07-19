@@ -30,14 +30,14 @@ namespace ClosureBT {
         
         //----------------------------------------------------------------------------------------------------------------------
 
-        public static BTLeaf DoAlways(string name, Action action) => new BTLeaf(name, () => {
+        public static BTLeaf DoAlwaysOnTick(string name, Action action) => new BTLeaf(name, () => {
             BT.OnBaseTick(() => {
                 action();
                 return BT.Status.Running;
             });
         });
 
-        public static BTLeaf DoAlways(Action action) => DoAlways("Do Always", action);
+        public static BTLeaf DoAlwaysOnTick(Action action) => DoAlwaysOnTick("Do Always", action);
 
         //----------------------------------------------------------------------------------------------------------------------
 
