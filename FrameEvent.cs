@@ -92,6 +92,10 @@ public static partial class FrameEvent {
     public static void AddListener<T>(UnityEngine.Object objectChannel, Action<T> listener) => AddListener<T>(null, objectChannel, listener);
     public static void AddListener<T>(string channel, Action<T> listener) => AddListener<T>(channel, null, listener);
 
+    public static void AddListener(string channel, UnityEngine.Object objectChannel, Action<DefaultType> listener) => AddListener<DefaultType>(channel, objectChannel, listener);
+    public static void AddListener(UnityEngine.Object objectChannel, Action<DefaultType> listener) => AddListener<DefaultType>(null, objectChannel, listener);
+    public static void AddListener(Action<DefaultType> listener) => AddListener<DefaultType>(null, null, listener);
+
     //------------------------------------------------------------------------------------------------------------------
 
     public static void RemoveListener<T>(string channel, UnityEngine.Object objectChannel, Action<T> listener) {
@@ -102,6 +106,10 @@ public static partial class FrameEvent {
     public static void RemoveListener<T>(UnityEngine.Object objectChannel, Action<T> listener) => RemoveListener<T>(null, objectChannel, listener);
     public static void RemoveListener<T>(string channel, Action<T> listener) => RemoveListener<T>(channel, null, listener);
     
+    public static void RemoveListener(string channel, UnityEngine.Object objectChannel, Action<DefaultType> listener) => RemoveListener<DefaultType>(channel, objectChannel, listener);
+    public static void RemoveListener(UnityEngine.Object objectChannel, Action<DefaultType> listener) => RemoveListener<DefaultType>(null, objectChannel, listener);
+    public static void RemoveListener(Action<DefaultType> listener) => RemoveListener<DefaultType>(null, null, listener);
+
     //------------------------------------------------------------------------------------------------------------------
 
     public static void RemoveAllListeners<T>(string channel, UnityEngine.Object objectChannel = null) {
