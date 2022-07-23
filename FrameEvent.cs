@@ -80,7 +80,7 @@ public static partial class FrameEvent {
     public static bool OnEvent<T>(this UnityEngine.Object objectChannel, string channel, out T e) => When<T>(channel, objectChannel, out e);
     public static bool OnEvent<T>(this UnityEngine.Object objectChannel, out T e) => When<T>(null, objectChannel, out e);
     public static bool OnEvent<T>(this UnityEngine.Object objectChannel) => When<T>(null, objectChannel, out var _);
-    public static void OnEvent(this UnityEngine.Object objectChannel, string channel = null) => When<DefaultType>(channel, objectChannel, out var _);
+    public static bool OnEvent(this UnityEngine.Object objectChannel, string channel = null) => When<DefaultType>(channel, objectChannel, out var _);
 
     //------------------------------------------------------------------------------------------------------------------
 
