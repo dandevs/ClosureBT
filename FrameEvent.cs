@@ -23,9 +23,9 @@ public static partial class FrameEvent {
     public static void Trigger<T>(UnityEngine.Object objectChannel, T e) => Trigger<T>(null, objectChannel, e);
     public static void Trigger<T>(string channel, T e) => Trigger<T>(channel, null, e);
     
-    public static void TriggerDefault(string channel, UnityEngine.Object objectChannel = null) => Trigger<DefaultType>(channel, objectChannel, default);
-    public static void TriggerDefault(UnityEngine.Object objectChannel) => Trigger<DefaultType>(null, objectChannel, default);
-    public static void TriggerDefault(string channel) => Trigger<DefaultType>(channel, null, default);
+    public static void Trigger(string channel, UnityEngine.Object objectChannel = null) => Trigger<DefaultType>(channel, objectChannel, default);
+    public static void Trigger(UnityEngine.Object objectChannel) => Trigger<DefaultType>(null, objectChannel, default);
+    public static void Trigger(string channel) => Trigger<DefaultType>(channel, null, default);
 
     //------------------------------------------------------------------------------------------------------------------
 
