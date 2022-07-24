@@ -48,11 +48,17 @@ namespace ClosureBT {
                 BT.current.onFailureDelegates += onFailure;
         }
 
+        /// <summary>
+        /// Forcefully make node run forever (Sequence and Selector only).
+        /// </summary>
         public static void Repeating(bool repeating = true) {
             if (BT.current is BTComposite composite)
                 composite.repeating = repeating;
         }
 
+        /// <summary>
+        /// Check all previous nodes for validity.
+        /// </summary>
         public static void Dynamic(bool dynamic = true) {
             if (BT.current != null)
                 BT.current.dynamic = dynamic;

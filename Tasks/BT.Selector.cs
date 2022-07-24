@@ -2,6 +2,7 @@ using System;
 
 namespace ClosureBT {
     public static partial class BT {
+        /// <summary> Same as predicate() || predicate() || predicate() </summary>
         public static BTComposite Selector(string name, Action nodes) => new BTComposite(name, () => {
             var self = BT.current as BTComposite;
             var lastRunningIndex = 0;

@@ -18,6 +18,20 @@ namespace ClosureBT {
 
         //----------------------------------------------------------------------------------------------------------------------
 
+        public static BTLeaf Wait(string name, Func<double> seconds) => new BTLeaf(name, () => {
+            var start = double.MinValue;
+            BT.OnEnter(() => start = Time.timeAsDouble);
+            BT.OnBaseTick(() => {
+                return Time.timeAsDouble > start + seconds() 
+                    ? BT.Status.Success 
+                    : BT.Status.Running;
+            });
+        });
+
+        public static BTLeaf Wait(Func<double> seconds) => Wait("Wait", seconds);
+
+        //----------------------------------------------------------------------------------------------------------------------
+
         public static BTLeaf WaitTicks(string name, int count) => new BTLeaf(name, () => {
             var ticks = 0;
             BT.OnEnter(() => ticks = 0);

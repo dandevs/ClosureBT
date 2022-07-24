@@ -2,6 +2,7 @@ using System;
 
 namespace ClosureBT {
     public static partial class BT {
+        /// <summary> Switch to node whose status just turned to Status.Running </summary>
         public static BTComposite RunningSwitch(string name, Action nodes) => new BTComposite(name, () => {
             var self = BT.current as BTComposite;
             var lastRunningIndex = 0;

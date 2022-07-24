@@ -2,6 +2,10 @@ using System;
 
 namespace ClosureBT {
     public static partial class BT {
+        /// <summary>
+        /// Sequentially go through all nodes ignoring success or failure.
+        /// Returns success once all nodes have been executed.
+        /// </summary>
         public static BTComposite Scan(string name, Action nodes) => new BTComposite(name, () => {
             var self = BT.current as BTComposite;
             var children = self.children;

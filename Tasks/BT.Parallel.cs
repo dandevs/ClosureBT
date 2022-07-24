@@ -2,6 +2,9 @@ using System;
 
 namespace ClosureBT {
     public static partial class BT {
+        /// <summary>
+        /// Not properly implemented.
+        /// </summary>
         public static BTComposite Parallel(string name, Action nodes) => new BTComposite(name, () => {
             var self = BT.current as BTComposite;
             var children = self.children;

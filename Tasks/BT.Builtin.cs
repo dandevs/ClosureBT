@@ -2,6 +2,7 @@ using System;
 
 namespace ClosureBT {
     public static partial class BT {
+        /// <summary> Execute function </summary>
         public static BTLeaf Do(string name, Action action) => new BTLeaf(name, () => {
             BT.OnBaseTick(() => {
                 action();
@@ -9,7 +10,7 @@ namespace ClosureBT {
             });
         });
 
-
+        /// <summary> Execute function when condition is true </summary>
         public static BTLeaf Do(string name, Func<bool> condition, Action action) => new BTLeaf(name, () => {
             var lastStatus = false;
 
@@ -30,6 +31,7 @@ namespace ClosureBT {
         
         //----------------------------------------------------------------------------------------------------------------------
 
+        /// <summary> Execute function every tick (never stops) </summary>
         public static BTLeaf DoAlwaysOnTick(string name, Action action) => new BTLeaf(name, () => {
             BT.OnBaseTick(() => {
                 action();
@@ -41,21 +43,24 @@ namespace ClosureBT {
 
         //----------------------------------------------------------------------------------------------------------------------
 
-        public static BTLeaf ReturnSuccess(string name) => new BTLeaf(name, () => {
+        public static BTLeaf ReturnSuccess(string name, Action lifecycle = null) => new BTLeaf(name, () => {
             BT.OnBaseTick(() => BT.Status.Success);
+            lifecycle?.Invoke();
         });
 
-        public static BTLeaf ReturnFailure(string name) => new BTLeaf(name, () => {
+        public static BTLeaf ReturnFailure(string name, Action lifecycle = null) => new BTLeaf(name, () => {
             BT.OnBaseTick(() => BT.Status.Failure);
+            lifecycle?.Invoke();
         });
 
-        public static BTLeaf ReturnRunning(string name) => new BTLeaf(name, () => {
+        public static BTLeaf ReturnRunning(string name, Action lifecycle = null) => new BTLeaf(name, () => {
             BT.OnBaseTick(() => BT.Status.Running);
+            lifecycle?.Invoke();
         });
 
-        public static BTLeaf ReturnSuccess() => ReturnSuccess("Return Success");
-        public static BTLeaf ReturnFailure() => ReturnFailure("Return Failure");
-        public static BTLeaf ReturnRunning() => ReturnRunning("Return Running");
+        public static BTLeaf ReturnSuccess(Action lifecycle = null) => ReturnSuccess("Return Success", lifecycle);
+        public static BTLeaf ReturnFailure(Action lifecycle = null) => ReturnFailure("Return Failure", lifecycle);
+        public static BTLeaf ReturnRunning(Action lifecycle = null) => ReturnRunning("Return Running", lifecycle);
 
         //----------------------------------------------------------------------------------------------------------------------
         
