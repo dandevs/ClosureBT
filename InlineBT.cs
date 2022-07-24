@@ -19,7 +19,9 @@ namespace ClosureBT {
             // TryGetValue causes 24b allocation :(
             if (!inlineBTInfo.ContainsKey(func)) {
                 inlineBTInfo[func] = new BTInlineInfo(func());
-                source.gameObject.GetOrAddComponent<BTInlineOnDestroy>().onDestroyDelegate += () => inlineBTInfo.Remove(func);
+
+                if (!source.gameObject.TryGetComponent<BTInlineOnDestroy>(out var _))
+                    source.gameObject.AddComponent<BTInlineOnDestroy>();
             }
 
             var info          = inlineBTInfo[func];
