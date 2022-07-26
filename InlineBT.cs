@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UniRx;
-using UniRx.Triggers;
 
 namespace ClosureBT {
     public static partial class BT {
